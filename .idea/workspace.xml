@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b0947e5-06ea-44ad-97d9-ed63a41e3200" name="Changes" comment="Creamos paquete com.ceica y modelo Proveedor">
-      <change afterPath="$PROJECT_DIR$/src/com/ceica/Modelos/Categoria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ceica/Modelos/Pieza.java" afterDir="false" />
+    <list default="true" id="2b0947e5-06ea-44ad-97d9-ed63a41e3200" name="Changes" comment="Creamos Categoria, Pedido y Pieza">
+      <change afterPath="$PROJECT_DIR$/src/com/ceica/Controladores/AlmacenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ceica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,12 +91,21 @@
       <option name="project" value="LOCAL" />
       <updated>1705419828181</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Creamos Categoria, Pedido y Pieza">
+      <option name="closed" value="true" />
+      <created>1705421630361</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705421630361</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Proyecto AppProveedores" />
     <MESSAGE value="Creamos paquete com.ceica y modelo Proveedor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creamos paquete com.ceica y modelo Proveedor" />
+    <MESSAGE value="Creamos Categoria, Pedido y Pieza" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creamos Categoria, Pedido y Pieza" />
   </component>
 </project>
