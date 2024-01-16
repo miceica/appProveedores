@@ -27,12 +27,23 @@ public class AlmacenController {
         return proveedorList.add(proveedor);
     }
 
+    public boolean borrarProveedor(String cif){
+        for (int i = 0; i < pedidoList.size(); i++) {
+            if (cif.equals(proveedorList.get(i).getCif())){
+                proveedorList.remove(i);
+                //proveedorList.remove(proveedorList.get(i));
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "AlmacenController{" + "\n" +
                 "proveedorList=" + proveedorList + "\n" +
                 "piezaList=" + piezaList + "\n" +
                 "pedidoList=" + pedidoList + "\n" +
-                '}';
+                "}" + "\n";
     }
 }
