@@ -22,13 +22,16 @@ public class Main {
 
         almacen.nuevaPieza("pieza1", Color.AZUL, 45.6, 1);
         almacen.nuevaPieza("pieza2", Color.ROJO, 105.6, 3);
-        System.out.println(almacen.toString());
 
-        almacen.editarNombrePieza(0,"nuevoNombre");
-        almacen.editarColorPieza(0,Color.AMARILLO);
-        almacen.editarPrecioPieza(0,55.5);
+        //almacen.editarNombrePieza(0,"nuevoNombre");
+        //almacen.editarColorPieza(0,Color.AMARILLO);
+        //almacen.editarPrecioPieza(0,55.5);
 
-        System.out.println(almacen.toString());
+        System.out.println(almacen.nuevoPedido("a", 0, 16));
+        System.out.println(almacen.nuevoPedido("b", 1, 33));
+
+        System.out.println(almacen.getPedidosByPieza(1));
+        System.out.println(almacen.getPedidosByProveedor("a"));
 
     }
 }

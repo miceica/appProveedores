@@ -2,6 +2,7 @@ package com.ceica.Controladores;
 
 import com.ceica.Modelos.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +99,13 @@ public class AlmacenController {
                 }).orElse(false);
     }
 
+    /**
+     * @param nombre Nombre de la pieza
+     * @param color color de la pieza
+     * @param precio precio de la pieza
+     * @param idCategoria
+     * @return true si la pieza es creada
+     */
     public boolean nuevaPieza(String nombre, Color color, Double precio, int idCategoria) {
         Pieza pieza = new Pieza(nombre, color.toString(), precio);
         pieza.setCategoria(getCategoriaById(idCategoria));
@@ -107,6 +115,80 @@ public class AlmacenController {
 
     private Categoria getCategoriaById(int id) {
         return categorias.stream().filter(c -> c.getId() == id).findFirst().get();
+    }
+
+    /**
+     * @param cif CIF del proveedor
+     * @param idPieza ID de la pieza
+     * @param cantidad Cantidad solicitada
+     * @return información sobre si ha completado el pedido o no
+     */
+    public String nuevoPedido(String cif, int idPieza, int cantidad) {
+        Proveedor proveedor = getProveedorByCif(cif);
+        if (proveedor != null) {
+            Pieza pieza = getPiezaById(idPieza);
+            if (pieza != null) {
+                Pedido pedido1 = new Pedido(proveedor, pieza);
+                pedido1.setCantidad(cantidad);
+                pedido1.setFecha(LocalDate.now());
+                pedidoList.add(pedido1);
+                return "Pedido creado";
+            } else {
+                return "Error al crear el pedido, Pieza no existe";
+            }
+        } else {
+            return "Error al crear el pedido, Proveedor no existe";
+        }
+    }
+
+    private Pieza getPiezaById(int id) {
+        for (int i = 0; i < piezaList.size(); i++) {
+            if (piezaList.get(i).getId() == id) {
+                return piezaList.get(i);
+            }
+        }
+        return null;
+    }
+
+    private Proveedor getProveedorByCif(String cif) {
+        for (Proveedor p : proveedorList) {
+            if (cif.equals(p.getCif())) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public String getPedidosByPieza(int idPieza) {
+        List<Pedido> pedidosByPieza = new ArrayList<>();
+        for (Pedido pedido : pedidoList) {
+            if (pedido.getPieza().getId() == idPieza) {
+                pedidosByPieza.add(pedido);
+            }
+        }
+        if (pedidosByPieza.size() > 0) {
+            return pedidosByPieza.toString();
+        } else {
+            return "No hay pedidos de esta pieza";
+        }
+    }
+
+    /**
+     * @param cif cif del proveedor
+     * @return un String con el pedido o información si no existe el proveedor
+     */
+    public String getPedidosByProveedor(String cif) {
+        List<Pedido> pedidosByProveedor = new ArrayList<>();
+        for (Pedido pedido : pedidoList) {
+            if (pedido.getProveedor().getCif() == cif) {
+                pedidosByProveedor.add(pedido);
+            }
+        }
+        if (pedidosByProveedor.size() > 0) {
+            return pedidosByProveedor.toString();
+        } else {
+            return "No hay pedidos para este proveedor";
+        }
     }
 
     @Override
