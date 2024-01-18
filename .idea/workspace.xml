@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b0947e5-06ea-44ad-97d9-ed63a41e3200" name="Changes" comment="creamos borrarProveedor">
+    <list default="true" id="2b0947e5-06ea-44ad-97d9-ed63a41e3200" name="Changes" comment="modificado el método borrarProveedor con función landa">
+      <change afterPath="$PROJECT_DIR$/src/com/ceica/Modelos/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/ceica/Controladores/AlmacenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Controladores/AlmacenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ceica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ceica/Modelos/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Modelos/Categoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ceica/Modelos/Pieza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Modelos/Pieza.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -42,7 +47,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Alumno Tarde/IdeaProjects/Ceica",
+    "last_opened_file_path": "C:/Users/Alumno Tarde/IdeaProjects/appProveedores",
     "onboarding.tips.debug.path": "C:/Users/Alumno Tarde/IdeaProjects/appProveedores/src/Main.java",
     "settings.editor.selected.configurable": "vcs.Git"
   }
@@ -132,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705427592977</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="modificado el método borrarProveedor con función landa">
+      <option name="closed" value="true" />
+      <created>1705428666618</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705428666618</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -141,6 +154,7 @@
     <MESSAGE value="Creamos Categoria, Pedido y Pieza" />
     <MESSAGE value="Creamos AlmacenController y comprobamos en Main que funcione" />
     <MESSAGE value="creamos borrarProveedor" />
-    <option name="LAST_COMMIT_MESSAGE" value="creamos borrarProveedor" />
+    <MESSAGE value="modificado el método borrarProveedor con función landa" />
+    <option name="LAST_COMMIT_MESSAGE" value="modificado el método borrarProveedor con función landa" />
   </component>
 </project>
