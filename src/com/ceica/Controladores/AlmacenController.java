@@ -191,6 +191,15 @@ public class AlmacenController {
         }
     }
 
+    public String verProveedor(String cif) {
+        for (Proveedor proveedor : proveedorList) {
+            if (proveedor.getCif() == cif) {
+                return "";
+            }
+        }
+       return "No existe ningún CIF que coincida con: " + cif;
+    }
+
     @Override
     public String toString() {
         return "AlmacenController{" + "\n" +
