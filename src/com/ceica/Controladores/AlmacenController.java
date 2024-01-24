@@ -14,26 +14,34 @@ public class AlmacenController {
 
     public AlmacenController() {
         proveedorList = new ArrayList<>();
+        proveedorList = Proveedor.getProveedores();
+
         pedidoList = new ArrayList<>();
         piezaList = new ArrayList<>();
         categorias = new ArrayList<>();
+
         categorias.add(new Categoria(1, "pequeño"));
         categorias.add(new Categoria(2, "mediano"));
         categorias.add(new Categoria(3, "grande"));
     }
+
+    //-------------------------------------------------- PROVEEDORES --------------------------------------------------
 
     public boolean nuevoProveedor(String cif, String nombre, String direccion, String localidad, String provincia) {
         Proveedor proveedor = new Proveedor(cif, nombre);
         proveedor.setDireccion(direccion);
         proveedor.setLocalidad(localidad);
         proveedor.setProvincia(provincia);
-
-        return proveedorList.add(proveedor);
+        return Proveedor.insertar(proveedor);
     }
 
-    public boolean borrarProveedor(String cif) {
-        //función landa
-        return proveedorList.removeIf(proveedor -> cif.equals(proveedor.getCif()));
+    public Proveedor getProveedorByCif(String cif) {
+        for (Proveedor proveedor : proveedorList) {
+            if (cif.equals(proveedor.getCif())) {
+                return proveedor;
+            }
+        }
+        return null;
     }
 
     public boolean editarNombreProveedor(String cif, String nombre) {
@@ -72,6 +80,29 @@ public class AlmacenController {
                 }).orElse(false);
     }
 
+    public boolean borrarProveedor(String cif) {
+        //función landa
+        return proveedorList.removeIf(proveedor -> cif.equals(proveedor.getCif()));
+    }
+
+    //----------------------------------------------------- PIEZAS -----------------------------------------------------
+
+    public boolean nuevaPieza(String nombre, Color color, Double precio, int idCategoria) {
+        Pieza pieza = new Pieza(nombre, color.toString(), precio);
+        pieza.setCategoria(getCategoriaById(idCategoria));
+        piezaList.add(pieza);
+        return true;
+    }
+
+    public Pieza getPiezaById(int idPieza) {
+        for (Pieza pieza : piezaList) {
+            if (pieza.getId() == idPieza) {
+                return pieza;
+            }
+        }
+        return null;
+    }
+
     public boolean editarNombrePieza(int id, String nombre) {
         return piezaList.stream()
                 .filter(p -> id == p.getId())
@@ -99,30 +130,13 @@ public class AlmacenController {
                 }).orElse(false);
     }
 
-    /**
-     * @param nombre Nombre de la pieza
-     * @param color color de la pieza
-     * @param precio precio de la pieza
-     * @param idCategoria
-     * @return true si la pieza es creada
-     */
-    public boolean nuevaPieza(String nombre, Color color, Double precio, int idCategoria) {
-        Pieza pieza = new Pieza(nombre, color.toString(), precio);
-        pieza.setCategoria(getCategoriaById(idCategoria));
-        piezaList.add(pieza);
-        return true;
+    public boolean borrarPieza(int idPieza) {
+        //función landa
+        return piezaList.removeIf(pieza -> idPieza == (pieza.getId()));
     }
 
-    private Categoria getCategoriaById(int id) {
-        return categorias.stream().filter(c -> c.getId() == id).findFirst().get();
-    }
+    //---------------------------------------------------- PEDIDOS ----------------------------------------------------
 
-    /**
-     * @param cif CIF del proveedor
-     * @param idPieza ID de la pieza
-     * @param cantidad Cantidad solicitada
-     * @return información sobre si ha completado el pedido o no
-     */
     public String nuevoPedido(String cif, int idPieza, int cantidad) {
         Proveedor proveedor = getProveedorByCif(cif);
         if (proveedor != null) {
@@ -141,24 +155,6 @@ public class AlmacenController {
         }
     }
 
-    private Pieza getPiezaById(int id) {
-        for (int i = 0; i < piezaList.size(); i++) {
-            if (piezaList.get(i).getId() == id) {
-                return piezaList.get(i);
-            }
-        }
-        return null;
-    }
-
-    private Proveedor getProveedorByCif(String cif) {
-        for (Proveedor p : proveedorList) {
-            if (cif.equals(p.getCif())) {
-                return p;
-            }
-        }
-        return null;
-    }
-
     public String getPedidosByPieza(int idPieza) {
         List<Pedido> pedidosByPieza = new ArrayList<>();
         for (Pedido pedido : pedidoList) {
@@ -173,10 +169,6 @@ public class AlmacenController {
         }
     }
 
-    /**
-     * @param cif cif del proveedor
-     * @return un String con el pedido o información si no existe el proveedor
-     */
     public String getPedidosByProveedor(String cif) {
         List<Pedido> pedidosByProveedor = new ArrayList<>();
         for (Pedido pedido : pedidoList) {
@@ -191,14 +183,27 @@ public class AlmacenController {
         }
     }
 
-    public String verProveedor(String cif) {
-        for (Proveedor proveedor : proveedorList) {
-            if (proveedor.getCif() == cif) {
-                return "";
+    //--------------------------------------------------- CATEGORÍAS ---------------------------------------------------
+
+    private Categoria getCategoriaById(int id) {
+        return categorias.stream().filter(c -> c.getId() == id).findFirst().get();
+    }
+
+    public String categoriasDisponibles() {
+        //...
+        return categorias.toString();
+    }
+
+    public boolean validarCategoria(int categoria) {
+        for (Categoria cat : categorias) {
+            if (cat.getId() == categoria) {
+                return true;
             }
         }
-       return "No existe ningún CIF que coincida con: " + cif;
+        return false;
     }
+
+    //--------------------------------------------------- TO STRING ---------------------------------------------------
 
     @Override
     public String toString() {

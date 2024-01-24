@@ -27,6 +27,6 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "(id=" + id + ", nombre=" + nombre + ")";
+        return "Escribe: " + id + " para la categoría " + nombre + "\n";
     }
 }
