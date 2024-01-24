@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class Conexion {
 
-    public static Connection conectar(){
+    public static Connection conectar() {
         String url;
         String usuario;
         String password;
@@ -22,8 +22,7 @@ public class Conexion {
         } catch (Exception e) {
             url = "jdbc:mysql://localhost:3306/proveedores";
             usuario = "root";
-            password = "123o4";
-
+            password = "1234";
         }
 
         try {
@@ -33,6 +32,5 @@ public class Conexion {
         } catch (Exception e) {
             return null;
         }
-
     }
 }
