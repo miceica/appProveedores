@@ -9,13 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b0947e5-06ea-44ad-97d9-ed63a41e3200" name="Changes" comment="creando consola">
-      <change afterPath="$PROJECT_DIR$/src/com/ceica/bbdd/Conexion.java" afterDir="false" />
+    <list default="true" id="2b0947e5-06ea-44ad-97d9-ed63a41e3200" name="Changes" comment="conexion bbdd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ceica/Controladores/AlmacenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Controladores/AlmacenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ceica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appProveedores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/appProveedores.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/ceica/Modelos/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Modelos/Categoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ceica/Modelos/Proveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ceica/Modelos/Proveedor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,17 +43,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Categoria.executor": "Run",
     "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Alumno Tarde/IdeaProjects/appProveedores-master",
+    "last_opened_file_path": "C:/Users/Alumno Tarde/IdeaProjects/appProveedores",
     "onboarding.tips.debug.path": "C:/Users/Alumno Tarde/IdeaProjects/appProveedores/src/Main.java",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
@@ -64,6 +66,26 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.ceica.Modelos" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Categoria" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ceica.Modelos.Categoria" />
+      <module name="appProveedores" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ceica.Modelos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Categoria" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -177,7 +199,23 @@
       <option name="project" value="LOCAL" />
       <updated>1705693317785</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="creando consola">
+      <option name="closed" value="true" />
+      <created>1706120584188</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706120584188</updated>
+    </task>
+    <task id="LOCAL-00014" summary="conexion bbdd">
+      <option name="closed" value="true" />
+      <created>1706125511591</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1706125511592</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -190,6 +228,7 @@
     <MESSAGE value="nueva pieza, editar pieza y enum color" />
     <MESSAGE value="comentarios" />
     <MESSAGE value="creando consola" />
-    <option name="LAST_COMMIT_MESSAGE" value="creando consola" />
+    <MESSAGE value="conexion bbdd" />
+    <option name="LAST_COMMIT_MESSAGE" value="conexion bbdd" />
   </component>
 </project>
