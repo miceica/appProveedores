@@ -2,10 +2,9 @@ package com.ceica.Modelos;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public abstract class ModeloBase {
@@ -34,26 +33,47 @@ public abstract class ModeloBase {
     protected abstract String getNombreTabla();
 
     // Métodos para CRUD
-    protected void insertar(String sql, Object... parametros) {
+    public boolean insertar(String sql, Object... parametros) {
         sql = "INSERT INTO " + getNombreTabla() + " " + sql;
-        ejecutarQuery(sql, parametros);
+        return ejecutarQuery(sql, parametros);
     }
 
-    protected void actualizar(String sql, Object... parametros) {
-        ejecutarQuery(sql, parametros);
+    public boolean actualizar(String sql, Object... parametros) {
+        sql = "UPDATE " + getNombreTabla() + " set " + sql;
+        return ejecutarQuery(sql, parametros);
     }
 
-    protected void borrar(String sql, Object... parametros) {
-        ejecutarQuery(sql, parametros);
+    public boolean borrar(String sql, Object... parametros) {
+        sql = "DELETE FROM " + getNombreTabla() + " WHERE " + sql;
+        return ejecutarQuery(sql, parametros);
     }
 
     // Método para leer datos de la base de datos
-    protected void leer(String sql, Object... parametros) {
-        // Implementa la lógica para leer datos
+    protected abstract Object createObjectFromResultSet(ResultSet resultSet) throws SQLException;
+
+    protected List<Object> leerTodos() {
+        List<Object> resultList = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + getNombreTabla();
+
+        try (Connection conexion = DriverManager.getConnection(URL, USUARIO, PASSWORD);
+             PreparedStatement preparedStatement = conexion.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Object obj = createObjectFromResultSet(resultSet);
+                resultList.add(obj);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultList;
     }
 
     // Método genérico para ejecutar consultas SQL
-    private void ejecutarQuery(String sql, Object... parametros) {
+    private boolean ejecutarQuery(String sql, Object... parametros) {
         try (Connection conexion = DriverManager.getConnection(URL, USUARIO, PASSWORD);
              PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
 
@@ -63,10 +83,15 @@ public abstract class ModeloBase {
             }
 
             // Ejecutar la consulta
-            preparedStatement.executeUpdate();
+            if (preparedStatement.executeUpdate() > 0) {
+                return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 }

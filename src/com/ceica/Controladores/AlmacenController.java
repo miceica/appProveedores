@@ -29,10 +29,13 @@ public class AlmacenController {
 
     public boolean nuevoProveedor(String cif, String nombre, String direccion, String localidad, String provincia) {
         Proveedor proveedor = new Proveedor(cif, nombre);
-        proveedor.setDireccion(direccion);
-        proveedor.setLocalidad(localidad);
-        proveedor.setProvincia(provincia);
-        return Proveedor.insertar(proveedor);
+
+        if (proveedor.insertar("(cif,nombre,direccion,localidad,provincia) values (?,?,?,?,?)", cif, nombre, direccion, localidad, provincia)) {
+            proveedorList = Proveedor.getProveedores();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Proveedor getProveedorByCif(String cif) {
@@ -45,45 +48,49 @@ public class AlmacenController {
     }
 
     public boolean editarNombreProveedor(String cif, String nombre) {
-        return proveedorList.stream()
-                .filter(p -> cif.equals(p.getCif()))
-                .findFirst().map(p -> {
-                    p.setNombre(nombre);
-                    return true;
-                }).orElse(false);
+        Proveedor proveedor = new Proveedor();
+        if (proveedor.actualizar("nombre=? where cif=?", nombre, cif)) {
+            proveedorList = Proveedor.getProveedores();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean editarDireccionProveedor(String cif, String direccion) {
-        return proveedorList.stream()
-                .filter(p -> cif.equals(p.getCif()))
-                .findFirst().map(p -> {
-                    p.setDireccion(direccion);
-                    return true;
-                }).orElse(false);
+        Proveedor proveedor = new Proveedor();
+        if (proveedor.actualizar("direccion=? where cif=?", direccion, cif)) {
+            proveedorList = Proveedor.getProveedores();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean editarLocalidadProveedor(String cif, String localidad) {
-        return proveedorList.stream()
-                .filter(p -> cif.equals(p.getCif()))
-                .findFirst().map(p -> {
-                    p.setLocalidad(localidad);
-                    return true;
-                }).orElse(false);
+        Proveedor proveedor = new Proveedor();
+        if (proveedor.actualizar("localidad=? where cif=?", localidad, cif)) {
+            proveedorList = Proveedor.getProveedores();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean editarProvinciaProveedor(String cif, String provincia) {
-        return proveedorList.stream()
-                .filter(p -> cif.equals(p.getCif()))
-                .findFirst().map(p -> {
-                    p.setProvincia(provincia);
-                    return true;
-                }).orElse(false);
+        Proveedor proveedor = new Proveedor();
+        if (proveedor.actualizar("provincia=? where cif=?", provincia, cif)) {
+            proveedorList = Proveedor.getProveedores();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean borrarProveedor(String cif) {
-        //función landa
-        //return proveedorList.removeIf(proveedor -> cif.equals(proveedor.getCif()));
-        if (Proveedor.eliminarProveedor(cif)) {
+        Proveedor proveedor = new Proveedor();
+
+        if (proveedor.borrar("cif=?", cif)) {
             proveedorList = Proveedor.getProveedores();
             return true;
         } else {
@@ -95,9 +102,13 @@ public class AlmacenController {
 
     public boolean nuevaPieza(String nombre, Color color, Double precio, int idCategoria) {
         Pieza pieza = new Pieza(nombre, color.toString(), precio);
-        pieza.setCategoria(getCategoriaById(idCategoria));
-        piezaList.add(pieza);
-        return true;
+
+        if (pieza.insertar("(nombre,color,precio,idcategoria) values (?,?,?,?)", nombre, color.toString(), precio, idCategoria)) {
+            piezaList = Pieza.getPiezas();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Pieza getPiezaById(int idPieza) {
